@@ -2,6 +2,7 @@ import pandas as pd
 import OwnFunctions as of
 import matplotlib.pyplot as plt
 from scipy import signal
+import neurokit2 as neuro
 
 columns = ["lead1","lead2", "lead3", "Time"]
 time=0
@@ -38,11 +39,20 @@ filteredEcg["lead3"] = signal.filtfilt(b, a, ecg["lead3"])
 plt.figure()
 
 
-plt.plot(ecg.Time, ecg.lead1, label="or Lead 1")
-plt.plot(filteredEcg.Time, filteredEcg.lead1, label="Filtered Lead 1")
+plt.plot(filteredEcg.Time, filteredEcg.lead1, label="Lead 1")
+
+
+
+#Finding peaks and troughs
+rtroughs,rpeaks = neuro.ecg_peaks(filteredEcg, sampling_rate=200)
+
+rPeakI = rpeaks['ECG_R_Peaks']
+
+# Mark R-peaks
+plt.scatter(filteredEcg.Time[rPeakI], filteredEcg.lead1[rPeakI],label="R-peaks")
 
 plt.xlabel("Time (ms)")
 plt.ylabel("Amplitude (mV)")
-plt.title("ECG Data")
+plt.title("ECG Signal with R-peaks")
 plt.legend()
 plt.show()
