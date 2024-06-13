@@ -40,7 +40,7 @@ plt.plot(ecg.Time, ecg.lead1, label="or Lead 1")
 plt.plot(filteredEcg.Time, filteredEcg.lead1, label="Filtered Lead 1")
 
 plt.xlabel("Time (ms)")
-plt.ylabel("Amplitude")
+plt.ylabel("Amplitude (mV)")
 plt.title("ECG Data")
 plt.legend()
 plt.show()
