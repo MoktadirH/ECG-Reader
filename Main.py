@@ -2,7 +2,6 @@ import pandas as pd
 import OwnFunctions as of
 import matplotlib.pyplot as plt
 from scipy import signal
-%matplotlib ipympl
 
 columns = ["lead1","lead2", "lead3", "Time"]
 time=0
@@ -45,5 +44,3 @@ plt.ylabel("Amplitude")
 plt.title("ECG Data")
 plt.legend()
 plt.show()
-
-#aosdijasodjasoidjasoidj
