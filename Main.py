@@ -22,7 +22,7 @@ ecg["Time"] = list(times)
 
 
 order = 4  #4th order Filter (Butterworth)
-b, a = signal.butter(order,0.3, btype="low", analog=False)
+b, a = signal.butter(order,0.2, btype="low", analog=False)
 
 #Remove noise and other things just to make it easier
 filteredEcg = pd.DataFrame()
@@ -32,6 +32,8 @@ filteredEcg["Time"] = ecg["Time"]
 filteredEcg["lead1"] = signal.filtfilt(b, a, ecg["lead1"])
 filteredEcg["lead2"] = signal.filtfilt(b, a, ecg["lead2"])
 filteredEcg["lead3"] = signal.filtfilt(b, a, ecg["lead3"])
+
+
 
 plt.figure()
 
