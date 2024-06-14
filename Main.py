@@ -36,28 +36,6 @@ filteredEcg["lead2"] = signal.filtfilt(b, a, ecg.lead2)
 filteredEcg["lead3"] = signal.filtfilt(b, a, ecg.lead3)
 
 
-"""#Following Pan-Tompkins algorithm
-#Change Height accordingly since we do not know if the bottom ones are needed
-peaks1,_=signal.find_peaks(filteredEcg.lead1, height=0.2)
-
-
-#Following Pan-Tompkins algorithm
-#Differentiating and squaring the filtered ecg as lead 1 only, helps really find those peak slopes which are the r peaks, make it more visible
-#One index smaller so whatever the peaks are shpuld be changed by 5ms since that is one index
-diffEcg=np.gradient((filteredEcg.lead1*20),1)
-squaredEcg=diffEcg ** 2
-
-#larger window size more smoothing but less visible sharp features, smaller are more sensitive to noise
-#At each point, find average of data in the window to make a "smoother version, the window moves and groups an area into one point to smoothen it out
-#0.12 seconds is usually the duration of the QRS complex
-windowSize = int(0.1 * 200)  # Adjust to whatever works
-
-#mode same means that the output has the same length as the input signal, so the actual graph doesnt become shorter or bigger
-#Convolve is how the moving average is computer
-movingAverage = np.convolve(squaredEcg, np.ones(windowSize) / windowSize, mode="same")
-findPoints,_=signal.find_peaks(movingAverage, height=0.02, distance=35)
-findPoints= [x for x in findPoints if x >=0.2]"""
-
 rPeaks=fx.detect_peaks(filteredEcg.lead1)
 
 plt.figure()
