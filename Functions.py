@@ -1,6 +1,6 @@
 
 
-def detect_peaks(ecgSignal):
+def detect_peaks(ecgSignal,time):
     import numpy as np
     import pandas as pd
     import matplotlib.pyplot as plt
@@ -11,7 +11,7 @@ def detect_peaks(ecgSignal):
     #larger window size more smoothing but less visible sharp features, smaller are more sensitive to noise
     #At each point, find average of data in the window to make a "smoother version, the window moves and groups an area into one point to smoothen it out
     #Window size just depends on just the ecg signal
-    windowSize = int(0.12 * len(ecgSignal))
+    windowSize = int(0.12 * 200)
 
     #mode same means that the output has the same length as the input signal, so the actual graph doesnt become shorter or bigger
     #Convolve is how the moving average is computer
@@ -34,5 +34,7 @@ def detect_peaks(ecgSignal):
 
     # Keep only the peaks that satisfy both thresholds
     finalPeaks = np.intersect1d(peaks, refinedPeaks)
+    
 
     return finalPeaks
+

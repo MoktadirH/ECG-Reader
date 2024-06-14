@@ -36,11 +36,10 @@ filteredEcg["lead2"] = signal.filtfilt(b, a, ecg.lead2)
 filteredEcg["lead3"] = signal.filtfilt(b, a, ecg.lead3)
 
 
-rPeaks=fx.detect_peaks(filteredEcg.lead1)
+rPeaks=fx.detect_peaks(filteredEcg.lead1,filteredEcg.Time)
 
 plt.figure()
 plt.plot(filteredEcg.Time, filteredEcg.lead1, label="Lead 1")
-
 #Since derivative changes the size, the -4 calibrates it back from the sine graph to the actual graph
 plt.scatter(filteredEcg.Time[rPeaks], filteredEcg.lead1[rPeaks], color="r", marker="o", label="R-peaks")
 plt.xlabel("Time (ms)")
