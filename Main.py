@@ -24,17 +24,22 @@ filteredEcg["lead3"] = fx.butterworthFilter(ecg.lead3,4)
 
 
 rPeaks=fx.detectPeaks(filteredEcg.lead1,filteredEcg.Time)
+rPeaks2=fx.detectPeaks(filteredEcg.lead2,filteredEcg.Time)
+rPeaks3=fx.detectPeaks(filteredEcg.lead3,filteredEcg.Time)
 #sdrr,rmssd,prr,vLowPower,lowPower,highPower
 sdrr,rmssd,prr,vLowPower,lowPower,highPower,psd=fx.hrvMetrics(rPeaks)
+sdrr2,rmssd2,prr2,vLowPower2,lowPower2,highPower2,psd2=fx.hrvMetrics(rPeaks2)
+sdrr3,rmssd3,prr3,vLowPower3,lowPower3,highPower3,psd3=fx.hrvMetrics(rPeaks3)
 
-print(vLowPower)
+
 plt.figure()
-plt.plot(psd)
-"""plt.plot(filteredEcg.Time, filteredEcg.lead1, label="Lead 1")
-#Since derivative changes the size, the -4 calibrates it back from the sine graph to the actual graph
-plt.scatter(filteredEcg.Time[rPeaks], filteredEcg.lead1[rPeaks], color="r", marker="o", label="R-peaks")
+
+
+plt.plot(filteredEcg.Time, filteredEcg.lead3, label="Lead 3")
+plt.scatter(filteredEcg.Time[rPeaks3], filteredEcg.lead1[rPeaks3], marker="o", label="R-peaks")
+
 plt.xlabel("Time (ms)")
 plt.ylabel("Amplitude (mV)")
 plt.title("ECG Signal with R-peaks")
-plt.legend()"""
+plt.legend()
 plt.show()

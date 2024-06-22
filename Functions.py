@@ -4,6 +4,7 @@ import neurokit2 as neuro
 import numpy as np
 import pywt
 import Functions as fx
+import matplotlib.pyplot as plt
 
 def detectPeaks(ecgSignal,time):
     # Using the Pan-Tompkins algorithm
@@ -68,7 +69,7 @@ def hrvMetrics(rrInt):
     #Using the welch method to find power specrtral density, allowing us to evaluate how the power is distributed over the frequencies
     #psd can be used to analyze how the energy is distributed, which we need for hrv
     #nperseg is the length of the segment
-    _, psd = signal.welch(rrInt, nperseg=len(rrInt))
+    f, psd = signal.welch(rrInt, fs=200, nperseg=len(rrInt))
 
     #Trapz method is an integration method that calculates the area under a specific curve (psd), the values gives us area at the specific frequencies that we need for each
     
@@ -77,8 +78,8 @@ def hrvMetrics(rrInt):
     #High = 0.015-0.4 Hz
 
     #(psd >= 0.0033)
-    vlowPower = np.trapz(psd[psd < 0.04])
-    lowPower = np.trapz(psd[(psd >= 0.04) & (psd < 0.15)])
-    highPower = np.trapz(psd[(psd >= 0.15) & (psd < 0.4)])
+    vlowPower = np.trapz(psd[psd < 4])
+    lowPower = np.trapz(psd[(psd >= 4) & (psd < 15)])
+    highPower = np.trapz(psd[(psd >= 15) & (psd < 4)])
 
     return sdrr,rmssd,prr,vlowPower,lowPower,highPower,psd
