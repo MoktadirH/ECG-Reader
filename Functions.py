@@ -2,7 +2,6 @@ import pandas as pd
 from scipy import signal
 import neurokit2 as neuro
 import numpy as np
-import pywt
 import Functions as fx
 import matplotlib.pyplot as plt
 
@@ -11,7 +10,7 @@ def detectPeaks(ecgSignal,time):
     #larger window size more smoothing but less visible sharp features, smaller are more sensitive to noise
     #At each point, find average of data in the window to make a "smoother version, the window moves and groups an area into one point to smoothen it out
     #Window size just depends on just the ecg signal
-    windowSize = int(0.12 * 200)
+    windowSize = int(0.10 * 200)
 
     #mode same means that the output has the same length as the input signal, so the actual graph doesnt become shorter or bigger
     #Convolve is how the moving average is computer
@@ -22,8 +21,8 @@ def detectPeaks(ecgSignal,time):
 
     # Set high and low thresholds, and is dynamic so it can be used in many different files
     #A valid r peak comes when it satisfies both thresholds, so that it can get precise with the low value but only goes throigh if the high also allows, letting it refine it further
-    threshold_high = 0.6 * stdDev
-    threshold_low = 0.4 * stdDev
+    threshold_high = 0.5 * stdDev
+    threshold_low = 0.3 * stdDev
 
     # Find peaks in the moving average
     #Distance is half the window size so that it doesnt detect the QRS complex multiple times
