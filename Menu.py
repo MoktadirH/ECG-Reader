@@ -9,8 +9,8 @@ shownLeads=1
 shownMaxTime=1
 
 #Colors for required things that are either missing or is complete
-statusMissing="\e[0;31m"
-statusComplete="\e[0;32m"
+statusMissing="\u001b[41m"
+statusComplete="\u001b[42m"
 status=statusMissing
 
 def getInfo(lead,hz,max):
@@ -24,6 +24,7 @@ def getInfo(lead,hz,max):
     print("How many Hz is the ECG itself?: ")
     hz=int(input())
     time=(1/hz)*1000
+    print("\033[2J\033[H", end="", flush=True)
     #Update the color of the menu option to green to show that they have set it up for cool effects
 
 
@@ -33,9 +34,10 @@ def option():
         "leads": changeLeads,
         "colors": changeColors,
         "subtitle": changeSubtitle,
-        "Setup":getInfo,
+        "settings":getInfo,
     }
     while (prompt!="exit"):
+        print("\033[2J\033[H", end="", flush=True)
         menuPrint()
         prompt=input()
         if(prompt in menuOptions):
@@ -52,6 +54,7 @@ def changeLeads():
             print("This is not a possible answer, please try again")
         else:
             shownLeads=numLeads
+            print("\033[2J\033[H", end="", flush=True)
 
 
 
@@ -63,7 +66,7 @@ def changeColors():
     print("sad")
 
 def menuPrint():
-    print("\u001B[47m Start\nColors\nLeads\nSubtitles\n",status,"Settings")
+    print("\u001B[47mStart\nColors\nLeads\nSubtitles\n",status,"Settings")
 
 #print(f'{person} is {ages[person]} years old.')
 #Good way of printing stuff out
