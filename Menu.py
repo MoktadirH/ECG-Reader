@@ -6,10 +6,11 @@ def option():
         "subtitle": changeSubtitle,
     }
     while (prompt!="exit"):
-        prompt=input().lower()
-        try:
+        menuPrint()
+        prompt=input()
+        if(prompt in menuOptions):
             menuOptions.get(prompt)()
-        except TypeError:
+        else:
             print("That does not seem to be a valid option as of this moment. Please try again")
 
 
@@ -24,5 +25,8 @@ def changeSubtitle():
 def changeColors():
     print("sad")
 
-"print(f'{person} is {ages[person]} years old.')"
+def menuPrint():
+    print("\u001B[47m Start\nColors\nLeads\nSubtitles")
+
+#print(f'{person} is {ages[person]} years old.')
 #Good way of printing stuff out

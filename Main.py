@@ -42,7 +42,6 @@ plt.plot(filteredEcg.Time, filteredEcg.lead3, label="Lead 3", color="green")
 plt.scatter(filteredEcg.Time[rPeaks3], filteredEcg.lead3[rPeaks3], marker="o", label="R-peaks (Lead 3)", color="red")
 
 
-print("Standard Deviation: ", sdrr,"Root mean squared: ", rmssd2, "Pairs longer than 50ms(Percentage): ", prr)
 txt="Standard Deviation: " +str(sdrr),"Root mean squared: ", str(rmssd2), "Pairs longer than 50ms(Percentage): ", str(prr)
 plt.figtext(0.5, 0.01, txt, horizontalalignment='center', fontsize=10)
 
