@@ -45,7 +45,7 @@ plt.scatter(filteredEcg.Time[rPeaks3], filteredEcg.lead3[rPeaks3], marker="o", l
 txt="Standard Deviation: " +str(sdrr),"Root mean squared: ", str(rmssd2), "Pairs longer than 50ms(Percentage): ", str(prr)
 plt.figtext(0.5, 0.01, txt, horizontalalignment='center', fontsize=10)
 
-mp.option()
+mp.option
 
 plt.xlabel("Time (ms)")
 plt.ylabel("Amplitude (mV)")
