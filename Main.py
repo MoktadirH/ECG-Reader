@@ -10,17 +10,13 @@ mp.option()
 
 
 
-
-
-
-
-
 columns = ["lead1","lead2", "lead3", "Time"]
 time=0
 timeCheck=5 #File is 200Hz, which means that each line is 5ms away from each other | Time= 1/Hz
 
 #Reading the file and storing it into a variable that we can play around with
-ecg=pd.read_csv("1-300m.txt",names=columns, sep="\t")
+rangeLead=[i for i in range(0,mp.shownLeads)]
+ecg=pd.read_csv(mp.directory,names=columns, usecols=rangeLead, sep="\t")
 
 #Finding out how many rows were read so that we can make the time column based on that since the file does not contain that
 rowCount = ecg.shape[0]
