@@ -3,6 +3,18 @@ import matplotlib.pyplot as plt
 import Functions as fx
 import Menu as mp
 
+
+mp.option()
+
+
+
+
+
+
+
+
+
+
 columns = ["lead1","lead2", "lead3", "Time"]
 time=0
 timeCheck=5 #File is 200Hz, which means that each line is 5ms away from each other | Time= 1/Hz
@@ -45,10 +57,13 @@ plt.scatter(filteredEcg.Time[rPeaks3], filteredEcg.lead3[rPeaks3], marker="o", l
 txt="Standard Deviation: " +str(sdrr),"Root mean squared: ", str(rmssd2), "Pairs longer than 50ms(Percentage): ", str(prr)
 plt.figtext(0.5, 0.01, txt, horizontalalignment='center', fontsize=10)
 
-mp.option()
 
 plt.xlabel("Time (ms)")
 plt.ylabel("Amplitude (mV)")
 plt.title("ECG Signal with R-peaks")
 plt.legend()
 plt.show()
+
+
+
+#python -m PyInstaller --onefile Main.py 
