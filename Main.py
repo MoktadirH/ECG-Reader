@@ -1,9 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import Functions as fx
-import Menu as mp
+from Menu import Menu
 
 
+
+mp=Menu()
 mp.option()
 
 
@@ -16,7 +18,7 @@ timeCheck=5 #File is 200Hz, which means that each line is 5ms away from each oth
 
 #Reading the file and storing it into a variable that we can play around with
 rangeLead=[i for i in range(0,mp.shownLeads)]
-ecg=pd.read_csv(mp.directory,names=columns, usecols=rangeLead, sep="\t")
+ecg=pd.read_csv(mp.directory,names=columns[rangeLead], usecols=rangeLead, sep="\t")
 
 #Finding out how many rows were read so that we can make the time column based on that since the file does not contain that
 rowCount = ecg.shape[0]
